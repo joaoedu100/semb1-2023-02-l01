@@ -1,5 +1,7 @@
 # Questionário Sistemas Embarcados I
 
+João Eduardo Moya - 11921EAU010
+
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
 - Quando um programa tem sua compilação feita em um sistema operacional ou plataforma diferente da qual é executado temos a chamada compilação cruzada. Sendo assim, serve para o desenvolvimento de softwares para plataformas diferentes da que o desenvolvedor está utilizando.
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
@@ -11,7 +13,7 @@
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
 O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
-
+O target(dependencias) se refere ao resultado na qual se quer obter ao executar uma regra em específico
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
 
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
