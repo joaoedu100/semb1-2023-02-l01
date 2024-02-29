@@ -7,9 +7,9 @@
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
-
+- Makefile é o arquivo que possui um conjunto de instruções necessárias para o utilitário Make ser capaz de fazer a compilação de arquivos, programas e bibliotecas automática. Nele contém comandos que devem ser utilizados e como lidar com erros. Os elementos do makefile são: regras explícitas, implicitas, definição de variáveis, diretivas e comentários.
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
-
+O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
