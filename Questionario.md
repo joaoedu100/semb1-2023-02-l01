@@ -1,9 +1,9 @@
 # Questionário Sistemas Embarcados I
 
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
-- Significa que o compilador pode ser  
+- Quando um programa tem sua compilação feita em um sistema operacional ou plataforma diferente da qual é executado temos a chamada compilação cruzada. Sendo assim, serve para o desenvolvimento de softwares para plataformas diferentes da que o desenvolvedor está utilizando.
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
-
+- O startup é o ponto de partida crítico para o sistema operacional, ou seja, antes do main. As suas principais funções são: iniciar as variáveis globais, configurar a memória e o processador e preparar para executar o código principal do programa.
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
