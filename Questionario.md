@@ -11,13 +11,14 @@ João Eduardo Moya - 11921EAU010
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
 - Makefile é o arquivo que possui um conjunto de instruções necessárias para o utilitário Make ser capaz de fazer a compilação de arquivos, programas e bibliotecas automática. Nele contém comandos que devem ser utilizados e como lidar com erros. Os elementos do makefile são: regras explícitas, implicitas, definição de variáveis, diretivas e comentários.
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
-O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
+-O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
-O target(dependencias) se refere ao resultado na qual se quer obter ao executar uma regra em específico
+targets:prerequisites
+recipe
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
-
+-As dependências do target são definidas depois da sua declaração. São usadas para garantir que um arquivo que tem dependências seja atualizado de acordo com as suas depedências. Quando a dependência é atualizada, o target deve ser recompilado e o make saberá disso na próxima execução.
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
-
+As chamadas regras do makefile são intruções que são responsáveis pela definição de criar um arquivo destino apartir de uma dependência. Regras explícitas tem a função de dar ao make quais são os arquivos que dependem de outros arquivos. E as regras implicitas informam ao make quais são os comandos que devem ser executados para a compilação do programa em geral.
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
