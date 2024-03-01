@@ -22,7 +22,7 @@ As chamadas regras do makefile são intruções que são responsáveis pela defi
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
 
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
-
+O conjunto de instruções Thumb pode ser definido como sendo um subconjunto de instruções ARM, assim comprime 32 bits para 16 bits reduzindo a quantidade de memória gerada pelo código e o tamanho do Hardware. Sendo assim, a Thumb tem uma instrução ARM equivalente, embora o contrário são seje possível e consegue alternar entre os dois tipos de instrução Thumb e ARM do processador. E também, ele atualiza sempre as flags de condição.
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
 
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
