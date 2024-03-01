@@ -24,11 +24,21 @@ As chamadas regras do makefile são intruções que são responsáveis pela defi
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
 O conjunto de instruções Thumb pode ser definido como sendo um subconjunto de instruções ARM, assim comprime 32 bits para 16 bits reduzindo a quantidade de memória gerada pelo código e o tamanho do Hardware. Sendo assim, a Thumb tem uma instrução ARM equivalente, embora o contrário são seje possível e consegue alternar entre os dois tipos de instrução Thumb e ARM do processador. E também, ele atualiza sempre as flags de condição.
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
-
+-Na arquitetura ARM Load/Store, todas as operações aritméticas e lógicas ocorrem entre registradores em primeiro lugar, antes que esses dados sejam transferidos para a memória. Em outras palavras, somente instruções de carregamento (load - leitura) e armazenamento (store - escrita) têm permissão para interagir diretamente com a memória. Por outro lado, na arquitetura Register/Register, todas as operações são realizadas exclusivamente entre registradores da CPU, dispensando qualquer acesso à memória. Esse método torna essa arquitetura mais eficaz, especialmente em termos de desempenho e em situações que envolvem manipulação intensiva de dados.
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
-
+Os níveis de acesso de execução de código em processadores ARM Cortex-M referem-se à autorização para acessar diferentes regiões de memória onde o código é executado. Esses níveis são cruciais para garantir a segurança, a integridade e a eficiência do sistema. Existem principalmente dois tipos de níveis de acesso de execução de código em sistemas Cortex-M:
+Execute-in-Place (XiP):
+-Nesse modo, o código é executado diretamente da memória onde está armazenado, geralmente a memória de programa (flash).
+-O processador busca as instruções diretamente da memória, sem a necessidade de carregá-las em outra área.
+-A memória de programa é tipicamente apenas leitura (ROM), o que impede modificações no código durante a execução.
+-Esse modo é comum em sistemas embarcados, onde a memória flash armazena o código do programa.
+Execute-in-Place (DiP):
+-Nesse modo, o código é copiado da memória de programa para a memória de dados (RAM) antes da execução.
+-Isso pode ser necessário quando a memória de programa é mais lenta para execução direta ou quando há restrições de segurança.
+-O código é temporariamente carregado na memória de dados apenas para a execução e pode ser descartado após o término.
+O funcionamento do processador Cortex-M depende do tipo de acesso de execução de código definido para a região de memória onde o código está armazenado. No modo XiP, as instruções são buscadas diretamente da memória de programa. No modo DiP, as instruções são copiadas da memória de programa para a memória de dados antes da execução. A escolha entre XiP e DiP deve considerar as necessidades específicas do sistema, como velocidade de execução, consumo de energia e requisitos de segurança .
 ### (d) Explique como os processadores ARM tratam as exceções e as interrupções. Quais são os diferentes tipos de exceção e como elas são priorizadas? Descreva a estratégia de **group priority** e **sub-priority** presente nesse processo.
-
+As interrupções são gerenciadas pelo sistema de prioridades em níveis de exceção e grupos de prioridade. Existem vários tipos de interrupções, como reset, IRQ, FIQ e SVC, cada um com sua própria prioridade. Para organizar melhor as interrupções, elas são agrupadas em níveis de prioridade. Dentro desses grupos, são criadas prioridades adicionais. O grupo é chamado de “Group Priority” (prioridade do grupo) e as propriedades adicionais são denominadas “Sub-Priority” (subprioridade). Essa estrutura permite que o sistema lide eficientemente com as interrupções, garantindo que as mais importantes sejam tratadas primeiro.
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
 
 ### (f) Qual a finalidade do **LR** (***Link Register***)?
