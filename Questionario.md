@@ -52,42 +52,24 @@ Portanto em resumo, o CPSR mantém o estado geral do processador, enquanto o SPS
 ### (i) Qual a finalidade do NVIC (**Nested Vectored Interrupt Controller**) nos microcontroladores ARM e como ele pode ser utilizado em aplicações de tempo real?
 -O Nested Vectored Interrupt Controller (NVIC) administra as interrupções de forma hierárquica, considerando a prioridade e a eficiência. Assim, possibilitando que as interrupções tenham prioridade em função da sua importância. Além disso, o NVIC suporta o conceito de interrupção aninhada, o que significa que uma interrupção pode ocorrer enquanto outra está sendo tratada. Isso permite que algumas interrupções sejam temporariamente desativadas.
 ### (j) Em modo de execução normal, o Cortex-M pode fazer uma chamada de função usando a instrução **BL**, que muda o **PC** para o endereço de destino e salva o ponto de execução atual no registador **LR**. Ao final da função, é possível recuperar esse contexto usando uma instrução **BX LR**, por exemplo, que atualiza o **PC** para o ponto anterior. No entanto, quando acontece uma interrupção, o **LR** é preenchido com um valor completamente  diferente,  chamado  de  **EXC_RETURN**.  Explique  o  funcionamento  desse  mecanismo  e especifique como o **Cortex-M** consegue fazer o retorno da interrupção. 
+Se ocorre uma exceção por exemplo uma interrupção no  Cortex-M, Link Register faz o retorno dessa exceção. Diferente da função convencional em que o LR armazena o endereço de retorno, durante uma interrupção, o LR recebe um valor especial chamado EXC_RETURN
 
+O EXC_RETURN contém informações essenciais sobre o contexto da pilha, o estado da exceção e outros detalhes relevantes para garantir um retorno adequado. Seus diferentes bits indicam aspectos fundamentais, como:
+
+1-Se a pilha foi ajustada automaticamente durante o tratamento da exceção.
+2-Se o retorno deve ser realizado para o modo Handler ou Thread.
+3-Se uma pilha diferente deve ser utilizada no retorno.
+4-Se o processador deve voltar ao modo Thumb ou ARM.
+
+Ao retornar de uma interrupção, o processador utiliza a instrução BX LR interpretando o valor armazenado no registrador LR (EXC_RETURN). Nos bits de maior importância, o processador faz a execução das ações , como ajustar a pilha. Esse mecanismo permite que o Cortex faça interrupção efetiva, se adaptando  ao contexto da exceção ocorreu.
 ### (k) Qual  a  diferença  no  salvamento  de  contexto,  durante  a  chegada  de  uma  interrupção,  entre  os processadores Cortex-M3 e Cortex M4F (com ponto flutuante)? Descreva em termos de tempo e também de uso da pilha. Explique também o que é ***lazy stack*** e como ele é configurado. 
+A diferença entre os processadores Cortex-M3 e Cortex-M4F está relacionada ao suporte de ponto flutuante, o impacto no tempo de resposta e no uso da pilha.
+
+No Cortex-M3, quando ocorre uma interrupção é automaticamente salvo na pilha principal. Porém, no Cortex-M4F, que possui suporte a ponto flutuante, é pode-se usar uma pilha de contexto separada para os registradores durante uma interrupção. Permitindo uma maior flexibilidade no gerenciamento dos registradores.
+
+O Lazy Stack é uma técnica de otimização de tempo e espaço na pilha para que sejam tratadas as interrupções. Em vez de alocar uma pilha fixa para cada thread, a pilha lazy é alocada dinamicamente apenas quando necessário. Essa abordagem economiza tempo e espaço na pilha para o tratamento de interrupções. Assim, possibilita adiar o salvamento dos registradores de ponto flutuante até que eles sejam efetivamente usados em uma interrupção. A configuração do Lazy Stack é realizada por meio do LSPACT e pode ser utilizada para ativa-la ou desativa-la
 
 
-## Referências
 
-### Básicas
 
-[1] [STM32F411xC Datasheet](https://www.st.com/resource/en/datasheet/stm32f411ce.pdf)
 
-[2] [RM0383 Reference Manual](https://www.st.com/resource/en/reference_manual/rm0383-stm32f411xce-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
-
-[3] [Using the GNU Compiler Collection (GCC)](https://gcc.gnu.org/onlinedocs/gcc/index.html)
-
-[4] [GNU Make](https://www.gnu.org/software/make/manual/html_node/index.html)
-
-### Vídeos Microsoft Teams
-
-[5] [05 - Introdução à arquitetura de computadores](https://web.microsoftstream.com/embed/channel/f6b3a0de-e6f3-4652-b2d5-f1164032498a?app=microsoftteams&sort=undefined&l=pt-br#)
-
-[6] [06 - Arquitetura Cortex-M Parte 1/2](https://web.microsoftstream.com/embed/channel/f6b3a0de-e6f3-4652-b2d5-f1164032498a?app=microsoftteams&sort=undefined&l=pt-br#)
-
-[7] [07 - Arquitetura Cortex-M Parte 2/2](https://web.microsoftstream.com/embed/channel/f6b3a0de-e6f3-4652-b2d5-f1164032498a?app=microsoftteams&sort=undefined&l=pt-br#)
-
-[8] [08 - Microcontroladores STM32](https://web.microsoftstream.com/embed/channel/f6b3a0de-e6f3-4652-b2d5-f1164032498a?app=microsoftteams&sort=undefined&l=pt-br#)
-
-[9] [10 - Introdução à arquitetura de computadores](https://web.microsoftstream.com/embed/channel/f6b3a0de-e6f3-4652-b2d5-f1164032498a?app=microsoftteams&sort=undefined&l=pt-br#)
-
-### Material Suplementar
-
-[5] [A General Overview of What Happens Before main()](https://embeddedartistry.com/blog/2019/04/08/a-general-overview-of-what-happens-before-main/)
- 
-[6] [Bare metal embedded lecture-1: Build process](https://youtu.be/qWqlkCLmZoE?si=mn5yDnJYudQ1PpZH)
- 
-[7] [Bare metal embedded lecture-2: Makefile and analyzing relocatable obj file](https://youtu.be/Bsq6P1B8JqI?si=yuNLPj3JQ-2IT1yo)
- 
-[8] [Bare metal embedded lecture-3: Writing MCU startup file from scratch](https://youtu.be/2Hm8eEHsgls?si=c27MpZ47ApiMSwHR)
- 
-[9] [Lecture 15: Booting Process](https://youtu.be/3brOzLJmeek?si=MsHRUEJP8zofjwJQ)
