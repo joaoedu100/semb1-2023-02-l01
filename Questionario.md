@@ -40,15 +40,17 @@ O funcionamento do processador Cortex-M depende do tipo de acesso de execução 
 ### (d) Explique como os processadores ARM tratam as exceções e as interrupções. Quais são os diferentes tipos de exceção e como elas são priorizadas? Descreva a estratégia de **group priority** e **sub-priority** presente nesse processo.
 As interrupções são gerenciadas pelo sistema de prioridades em níveis de exceção e grupos de prioridade. Existem vários tipos de interrupções, como reset, IRQ, FIQ e SVC, cada um com sua própria prioridade. Para organizar melhor as interrupções, elas são agrupadas em níveis de prioridade. Dentro desses grupos, são criadas prioridades adicionais. O grupo é chamado de “Group Priority” (prioridade do grupo) e as propriedades adicionais são denominadas “Sub-Priority” (subprioridade). Essa estrutura permite que o sistema lide eficientemente com as interrupções, garantindo que as mais importantes sejam tratadas primeiro.
 ### (e) Qual a diferença entre os registradores **CPSR** (***Current Program Status Register***) e **SPSR** (***Saved Program Status Register***)?
-
+-O CPSR (ou PSR) é um registro que mantém o estado atual do processador. Ele registra informações importantes, como o modo de operação atual (usuário, supervisor, etc.), as condições de flags (como o flag de overflow), e outras configurações relevantes.
+Por outro lado, o SPSR (ou PSR) é usado para armazenar temporariamente o estado do processador durante exceções e interrupções. Quando uma exceção ocorre (por exemplo, uma interrupção de hardware), o processador salva seu estado atual no SPSR antes de lidar com a exceção. Isso permite que o processador retome a execução normal após a exceção sem perder informações críticas.
+Portanto em resumo, o CPSR mantém o estado geral do processador, enquanto o SPSR é usado para preservar temporariamente o estado durante exceções. 
 ### (f) Qual a finalidade do **LR** (***Link Register***)?
-
+-O Link Register armazena o endereço de retorno de uma sub-rotina. Quando ocorre uma interrupção, o Link Register guarda o endereço de retorno. Dessa forma, após o tratamento da interrupção, o programa pode retomar a execução a partir desse ponto específico indicado pelo endereço de retorno. 
 ### (g) Qual o propósito do Program Status Register (PSR) nos processadores ARM?
-
+-O Program Status Register (PSR) tem como objetivo armazenar informações sobre o estado atual do processador. Ele desempenha um papel crucial no controle do fluxo de execução do programa e na eficaz gestão de exceções. 
 ### (h) O que é a tabela de vetores de interrupção?
-
+-É uma tabela de endereços de memória que associa uma lista de manipuladores de interrupção a uma lista de solicitações de interrupção. Cada vetor de interrupção contém o endereço de um tratador de interrupção específico. Se uma interrupção é gerada, o processador salva seu estado atual e começa a executar o tratamento de interrupção apontado pelo vetor garantindo que nenhuma das tarefas executadas tenha conflito.
 ### (i) Qual a finalidade do NVIC (**Nested Vectored Interrupt Controller**) nos microcontroladores ARM e como ele pode ser utilizado em aplicações de tempo real?
-
+-O Nested Vectored Interrupt Controller (NVIC) administra as interrupções de forma hierárquica, considerando a prioridade e a eficiência. Assim, possibilitando que as interrupções tenham prioridade em função da sua importância. Além disso, o NVIC suporta o conceito de interrupção aninhada, o que significa que uma interrupção pode ocorrer enquanto outra está sendo tratada. Isso permite que algumas interrupções sejam temporariamente desativadas.
 ### (j) Em modo de execução normal, o Cortex-M pode fazer uma chamada de função usando a instrução **BL**, que muda o **PC** para o endereço de destino e salva o ponto de execução atual no registador **LR**. Ao final da função, é possível recuperar esse contexto usando uma instrução **BX LR**, por exemplo, que atualiza o **PC** para o ponto anterior. No entanto, quando acontece uma interrupção, o **LR** é preenchido com um valor completamente  diferente,  chamado  de  **EXC_RETURN**.  Explique  o  funcionamento  desse  mecanismo  e especifique como o **Cortex-M** consegue fazer o retorno da interrupção. 
 
 ### (k) Qual  a  diferença  no  salvamento  de  contexto,  durante  a  chegada  de  uma  interrupção,  entre  os processadores Cortex-M3 e Cortex M4F (com ponto flutuante)? Descreva em termos de tempo e também de uso da pilha. Explique também o que é ***lazy stack*** e como ele é configurado. 
