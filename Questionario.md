@@ -3,20 +3,20 @@
 João Eduardo Moya - 11921EAU010
 
 ## 1. Explique brevemente o que é compilação cruzada (***cross-compiling***) e para que ela serve.
-- Quando um programa tem sua compilação feita em um sistema operacional ou plataforma diferente da qual é executado temos a chamada compilação cruzada. Sendo assim, serve para o desenvolvimento de softwares para plataformas diferentes da que o desenvolvedor está utilizando.
+Quando um programa tem sua compilação feita em um sistema operacional ou plataforma diferente da qual é executado temos a chamada compilação cruzada. Sendo assim, serve para o desenvolvimento de softwares para plataformas diferentes da que o desenvolvedor está utilizando.
 ## 2. O que é um código de inicialização ou ***startup*** e qual sua finalidade?
-- O startup é o ponto de partida crítico para o sistema operacional, ou seja, antes do main. As suas principais funções são: iniciar as variáveis globais, configurar a memória e o processador e preparar para executar o código principal do programa.
+O startup é o ponto de partida crítico para o sistema operacional, ou seja, antes do main. As suas principais funções são: iniciar as variáveis globais, configurar a memória e o processador e preparar para executar o código principal do programa.
 ## 3. Sobre o utilitário **make** e o arquivo **Makefile responda**:
 
 #### (a) Explique com suas palavras o que é e para que serve o **Makefile**.
-- Makefile é o arquivo que possui um conjunto de instruções necessárias para o utilitário Make ser capaz de fazer a compilação de arquivos, programas e bibliotecas automática. Nele contém comandos que devem ser utilizados e como lidar com erros. Os elementos do makefile são: regras explícitas, implicitas, definição de variáveis, diretivas e comentários.
+Makefile é o arquivo que possui um conjunto de instruções necessárias para o utilitário Make ser capaz de fazer a compilação de arquivos, programas e bibliotecas automática. Nele contém comandos que devem ser utilizados e como lidar com erros. Os elementos do makefile são: regras explícitas, implicitas, definição de variáveis, diretivas e comentários.
 #### (b) Descreva brevemente o processo realizado pelo utilitário **make** para compilar um programa.
--O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
+O make analisa todo o código que foi descrito no Makefile e também compila os arquivos-fonte necessários para criação de um arquivo objeto executável.
 #### (c) Qual é a sintaxe utilizada para criar um novo **target**?
 targets:prerequisites
 recipe
 #### (d) Como são definidas as dependências de um **target**, para que elas são utilizadas?
--As dependências do target são definidas depois da sua declaração. São usadas para garantir que um arquivo que tem dependências seja atualizado de acordo com as suas depedências. Quando a dependência é atualizada, o target deve ser recompilado e o make saberá disso na próxima execução.
+As dependências do target são definidas depois da sua declaração. São usadas para garantir que um arquivo que tem dependências seja atualizado de acordo com as suas depedências. Quando a dependência é atualizada, o target deve ser recompilado e o make saberá disso na próxima execução.
 #### (e) O que são as regras do **Makefile**, qual a diferença entre regras implícitas e explícitas?
 As chamadas regras do makefile são intruções que são responsáveis pela definição de criar um arquivo destino apartir de uma dependência. Regras explícitas tem a função de dar ao make quais são os arquivos que dependem de outros arquivos. E as regras implicitas informam ao make quais são os comandos que devem ser executados para a compilação do programa em geral.
 ## 4. Sobre a arquitetura **ARM Cortex-M** responda:
@@ -24,7 +24,7 @@ As chamadas regras do makefile são intruções que são responsáveis pela defi
 ### (a) Explique o conjunto de instruções ***Thumb*** e suas principais vantagens na arquitetura ARM. Como o conjunto de instruções ***Thumb*** opera em conjunto com o conjunto de instruções ARM?
 O conjunto de instruções Thumb pode ser definido como sendo um subconjunto de instruções ARM, assim comprime 32 bits para 16 bits reduzindo a quantidade de memória gerada pelo código e o tamanho do Hardware. Sendo assim, a Thumb tem uma instrução ARM equivalente, embora o contrário são seje possível e consegue alternar entre os dois tipos de instrução Thumb e ARM do processador. E também, ele atualiza sempre as flags de condição.
 ### (b) Explique as diferenças entre as arquiteturas ***ARM Load/Store*** e ***Register/Register***.
--Na arquitetura ARM Load/Store, todas as operações aritméticas e lógicas ocorrem entre registradores em primeiro lugar, antes que esses dados sejam transferidos para a memória. Em outras palavras, somente instruções de carregamento (load - leitura) e armazenamento (store - escrita) têm permissão para interagir diretamente com a memória. Por outro lado, na arquitetura Register/Register, todas as operações são realizadas exclusivamente entre registradores da CPU, dispensando qualquer acesso à memória. Esse método torna essa arquitetura mais eficaz, especialmente em termos de desempenho e em situações que envolvem manipulação intensiva de dados.
+Na arquitetura ARM Load/Store, todas as operações aritméticas e lógicas ocorrem entre registradores em primeiro lugar, antes que esses dados sejam transferidos para a memória. Em outras palavras, somente instruções de carregamento (load - leitura) e armazenamento (store - escrita) têm permissão para interagir diretamente com a memória. Por outro lado, na arquitetura Register/Register, todas as operações são realizadas exclusivamente entre registradores da CPU, dispensando qualquer acesso à memória. Esse método torna essa arquitetura mais eficaz, especialmente em termos de desempenho e em situações que envolvem manipulação intensiva de dados.
 ### (c) Os processadores **ARM Cortex-M** oferecem diversos recursos que podem ser explorados por sistemas baseados em **RTOS** (***Real Time Operating Systems***). Por exemplo, a separação da execução do código em níveis de acesso e diferentes modos de operação. Explique detalhadamente como funciona os níveis de acesso de execução de código e os modos de operação nos processadores **ARM Cortex-M**.
 Os níveis de acesso de execução de código em processadores ARM Cortex-M referem-se à autorização para acessar diferentes regiões de memória onde o código é executado. Esses níveis são cruciais para garantir a segurança, a integridade e a eficiência do sistema. Existem principalmente dois tipos de níveis de acesso de execução de código em sistemas Cortex-M:
 Execute-in-Place (XiP):
@@ -67,7 +67,7 @@ A diferença entre os processadores Cortex-M3 e Cortex-M4F está relacionada ao 
 
 No Cortex-M3, quando ocorre uma interrupção é automaticamente salvo na pilha principal. Porém, no Cortex-M4F, que possui suporte a ponto flutuante, é pode-se usar uma pilha de contexto separada para os registradores durante uma interrupção. Permitindo uma maior flexibilidade no gerenciamento dos registradores.
 
-O Lazy Stack é uma técnica de otimização de tempo e espaço na pilha para que sejam tratadas as interrupções. Em vez de alocar uma pilha fixa para cada thread, a pilha lazy é alocada dinamicamente apenas quando necessário. Essa abordagem economiza tempo e espaço na pilha para o tratamento de interrupções. Assim, possibilita adiar o salvamento dos registradores de ponto flutuante até que eles sejam efetivamente usados em uma interrupção. A configuração do Lazy Stack é realizada por meio do LSPACT e pode ser utilizada para ativa-la ou desativa-la
+O Lazy Stack é uma técnica de otimização de tempo e espaço na pilha para que sejam tratadas as interrupções. Em vez de alocar uma pilha fixa para cada thread, a pilha lazy é alocada dinamicamente apenas quando necessário. Essa abordagem economiza tempo e espaço na pilha para o tratamento de interrupções. Assim, possibilita adiar o salvamento dos registradores de ponto flutuante até que eles sejam efetivamente usados em uma interrupção. A configuração do Lazy Stack é realizada por meio do LSPACT e pode ser utilizada para ativa-la ou desativa-la.
 
 
 
